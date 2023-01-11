@@ -1,33 +1,29 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from "axios";
 import { PostsNew } from './PostsNew';
 import { PostsIndex } from './PostsIndex';
+import { Modal } from "./Modal";
 
 export function Content() {
+  const [posts, setPosts] = useState([]);
 
-  const [posts, setPosts] = useState([
-    {
-      id: 1,
-      title: "___",
-      body: "___",
-      image: "___",
-    },
-    {
-      id: 2,
-      title: "___",
-      body: "___",
-      image: "___",
-    },
-    {
-      id: 3,
-      title: "___",
-      body: "___",
-      image: "___",
-    },
-  ]);
+  const handleIndexPosts = () => {
+    axios.get("http://localhost:3000/posts.json").then(response => {
+      console.log(response.data);
+      setPosts(response.data);
+    });
+  };
+
+  useEffect(handleIndexPosts, []);
 
   return (
     <div>
       <PostsNew />
-      <PostsIndex />
-    </div>);
+      {/* <button onClick={handleIndexPosts}>Get the data</button> */}
+      <PostsIndex posts={posts} />
+      <Modal show={false}>
+        <p>TEST</p>
+      </Modal>
+    </div>
+  );
 }
