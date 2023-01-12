@@ -36,7 +36,7 @@ export function Content() {
 
 
   return (
-    <div>
+    <div className="container">
       <PostsNew />
       {/* <button onClick={handleIndexPosts}>Get the data</button> */}
       <PostsIndex posts={posts} onSelectPost={handleShowPost} />
