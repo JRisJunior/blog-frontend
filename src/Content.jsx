@@ -3,9 +3,12 @@ import axios from "axios";
 import { PostsNew } from './PostsNew';
 import { PostsIndex } from './PostsIndex';
 import { Modal } from "./Modal";
+import { PostsShow } from "./PostsShow";
 
 export function Content() {
   const [posts, setPosts] = useState([]);
+  const [isPostsShowVisible, setIsPostsShowVisible] = useState(false);
+  const [currentPost, setCurrentPost] = useState({});
 
   const handleIndexPosts = () => {
     axios.get("http://localhost:3000/posts.json").then(response => {
@@ -17,15 +20,18 @@ export function Content() {
 
   useEffect(handleIndexPosts, []);
 
-  const [isPostsShowVisible, setIsPostsShowVisible] = useState(false);
+
 
   const handleHidePost = () => {
     setIsPostsShowVisible(false);
   };
 
-  const handleShowPost = () => {
+  const handleShowPost = (post) => {
+    console.log(post);
+    setCurrentPost(post);
     setIsPostsShowVisible(true);
   };
+
 
 
 
@@ -35,7 +41,7 @@ export function Content() {
       {/* <button onClick={handleIndexPosts}>Get the data</button> */}
       <PostsIndex posts={posts} onSelectPost={handleShowPost} />
       <Modal show={isPostsShowVisible} onClose={handleHidePost}>
-        <p>TEST</p>
+        <PostsShow post={currentPost}/>
       </Modal>
     </div>
   );
