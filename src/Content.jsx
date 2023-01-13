@@ -35,12 +35,17 @@ export function Content() {
     setIsPostsShowVisible(true);
   };
 
-
+  const handleCreatePost = (params, successCallback) => {
+    console.log("handleCreatePost", params);
+    axios.post("http://localhost:3000/posts", params).then((response => {
+      setPosts([...posts, response.data]);
+    }));
+  };
 
 
   return (
     <div className="container">
-      <PostsNew />
+      <PostsNew onCreatePost={handleCreatePost}/>
       <hr />
       <hr />
       <Signup />
