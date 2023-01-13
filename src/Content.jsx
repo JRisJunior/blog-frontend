@@ -5,7 +5,7 @@ import { PostsIndex } from './PostsIndex';
 import { Modal } from "./Modal";
 import { PostsShow } from "./PostsShow";
 import { Signup } from "./Signup";
-
+import { Login } from "./Login";
 
 export function Content() {
   const [posts, setPosts] = useState([]);
@@ -43,6 +43,8 @@ export function Content() {
       <hr />
       <hr />
       <Signup />
+      <hr />
+      <Login />
       <hr />
       {/* <button onClick={handleIndexPosts}>Get the data</button> */}
       <PostsIndex posts={posts} onSelectPost={handleShowPost} />
