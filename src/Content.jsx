@@ -46,6 +46,14 @@ export function Content() {
     console.log(postId);
     axios.patch(`http://localhost:3000/posts/${postId}.json`, params).then(response => {
       console.log(response.data);
+      setPosts(posts.map(post => {
+        if (post.id === response.data.id) {
+          return response.data;
+        } else {
+          return post;
+        }
+      }));
+      handleHidePost();
     });
   };
 
