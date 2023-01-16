@@ -57,6 +57,13 @@ export function Content() {
     });
   };
 
+  const handleDestroyPost = (post) => {
+    console.log(post.id);
+    axios.delete(`http://localhost:3000/posts/10.json`).then(response => {
+      console.log('deleted the post');
+    });
+  };
+
 
   return (
     <div className="container">

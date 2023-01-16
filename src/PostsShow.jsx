@@ -5,6 +5,11 @@ export function PostsShow(props) {
     console.log(props.post);
     props.onUpdatePost(params, props.post.id);
   };
+
+  // const handleDelete = () = => {
+  //   console.log('handling delete');
+  //   props.onDestroyPost(props.post);
+  // }
   console.log(props);
   return (
     <div>
@@ -23,7 +28,10 @@ export function PostsShow(props) {
           </div>
           <button type="submit">Update post</button>
         </form>
+        <button>Delete Post</button>
       </div>
     </div>
   );
 }
+
+//  onClick={handleDelete} in delete post button
