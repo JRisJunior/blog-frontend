@@ -42,6 +42,13 @@ export function Content() {
     }));
   };
 
+  const handleUpdatePost = (params, postId) => {
+    console.log(postId);
+    axios.patch(`http://localhost:3000/posts/${postId}.json`, params).then(response => {
+      console.log(response.data);
+    });
+  };
+
 
   return (
     <div className="container">
@@ -56,7 +63,7 @@ export function Content() {
       {/* <button onClick={handleIndexPosts}>Get the data</button> */}
       <PostsIndex posts={posts} onSelectPost={handleShowPost} />
       <Modal show={isPostsShowVisible} onClose={handleHidePost}>
-        <PostsShow post={currentPost}/>
+        <PostsShow post={currentPost} onUpdatePost={handleUpdatePost}/>
       </Modal>
     </div>
   );
